@@ -286,3 +286,23 @@ def compute_binomial_coefficient(upper_index , lower_index):
 
     binomial_coef = factorial(upper_index) // (factorial(lower_index) * factorial(upper_index - lower_index))
     return binomial_coef
+
+
+def sum_of_digits(number):
+    """
+    Computes sum of the digits of "number"
+    Assumptions: "number" is really an integer
+    Arguments:
+    (i)  "number" : An integer , which we wants to computes sum of its digits
+    Return value:
+    (i) total : An integer , which is equal to sum of digits of "number"
+    Known Bugs: None
+    """
+    #Convert "number" to string to iterate over its digits
+    str_number = str(number)
+
+    total = 0
+    for char in str_number:
+        total += int(char)
+
+    return total
