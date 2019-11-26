@@ -14,6 +14,10 @@ a iterative version?
 (d) should we convert factorize_integer to a iterative function?
 (e) add docstring for last 5 functions
 (f) check performance of the functions
+(g) change the palindrome function to fasten it a bit via only checking the
+half of the number rather than the whole
+(i) Solve the inconsistince of two functions get_first_n_digit and
+get_last_n_digit since one of them returns string other returns integer
 """
 
 def greatest_common_divisor(num1 , num2):
@@ -134,38 +138,60 @@ def factorize_integer(number):
             return  divisor_list + factorize_integer(number // prime_divisor)
     return prime_factors
 
-def get_divisors(num):
+def get_divisors(number):
     """
-    Get divisors of a particular number
+    Get divisors of "number"
+    This function gets first "n" digits of "number"
+    Assumptions: "number" is really an integer
+    Arguments:
+    (i)  "number" : An integer , which we want to compute its divisors
+    Return value:
+    (i) divisor_list : An integer list , which contains all of its positive divisors.
+    Known Bugs: None
     """
     divisor_list = []
-    for divisor in range(1 , (num + 2)//2):
-        if num % divisor == 0:
+    for divisor in range(1 , (number + 2)//2):
+        if number % divisor == 0:
             divisor_list.append(divisor)
-    divisor_list.append(num)
+    divisor_list.append(number)
     return divisor_list
 
 def compute_fibonacchi_numbers(upper_bound):
     """
-    This function all the fibonacchi numbers less than a given number
+    This function computes all the fibonacchi numbers less than or equal to "upper_bound"
+    Assumptions: "upper_bound" is really an integer
+    Arguments:
+    (i) "upper_bound" : An integer , which shows the upper bound for the fibonacci numbers we want
+    Return value:
+    (i) "fibonacchi_list" : integer list , which contains all the fibonacchi numbers less than "upper_bound"
+    Known Bugs: None
+    Known Problems: Do we really need pre_pre_fibobacchi nonsense??
     """
+    #Initialize the list
     fibonacchi_list = [1 , 1]
     pre_fibonacchi = 1
     pre_pre_fibobacchi = 1
     current_fibonacchi = 2
+
+    #Compute fibonacci numbers until we hit the "upper_bound"
     while current_fibonacchi <= upper_bound:
         fibonacchi_list.append(current_fibonacchi)
         pre_pre_fibobacchi = pre_fibonacchi
         pre_fibonacchi = current_fibonacchi
         current_fibonacchi = pre_fibonacchi + pre_pre_fibobacchi
 
-
     return fibonacchi_list
-
 
 def is_palindrome(number):
     """
-    This function checks whether a particular number is is_palindrome or not
+    This function checks whether "number" is a palindrome or not
+    Assumptions: "number" is really an integer
+    Arguments:
+    (i) "number" : An integer , which we want to check whether it is a palindrome or not
+    Return value:
+    (i) boolean : True  -> indicating that "number" is palindrome
+                  False -> indicating that "number" is not palindrome
+    Known Bugs: None
     """
     str_number = str(number)
     for i in range(len(str_number)):
@@ -173,23 +199,39 @@ def is_palindrome(number):
             return False
     return True
 
-
 def get_first_n_digit(number , n):
     """
-    This function gets first n digit of the number
+    This function gets first "n" digits of "number"
+    Assumptions: "number" is really an integer , n is really an integer
+    Arguments:
+    (i)  "number" : An integer , which we want to compute its first "n" digits
+    (ii) "n"      : An integer , which shows how many first digits of "number" is wanted
+    Return value:
+    (i) first_n_digits_without_zeros : An integer , which is the first "n" digits of "number"
+    Known Bugs: None
     """
-
+    #Find length of the number
     number_of_digits = len(str(number))
+
+    #If we only wants some portion of the number get rid of the "n"+1st , "n"+2nd digits
     if number_of_digits > n:
         first_n_digits_with_zeros = number % (10 ** (number_of_digits - n))
         first_n_digits_without_zeros = (number - first_n_digits_with_zeros) // (10**(number_of_digits-n))
         return first_n_digits_without_zeros
+    #If "n" == len("number") return the whole number
     else:
         return number
     pass
 def get_last_n_digit(number , n):
     """
     This function gets last n digit of the number
+    Assumptions: "number" is really an integer , n is really an integer
+    Arguments:
+    (i)  "number" : An integer , which we want to compute its last "n" digits
+    (ii) "n"      : An integer , which shows how many last digits of "number" is wanted
+    Return value:
+    (i) str_last_digits : A string , which is the last "n" digits of "number"
+    Known Bugs: None
     """
     last_digits = number % (10 ** n)
     str_last_digits = str(last_digits)
