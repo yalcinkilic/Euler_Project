@@ -269,5 +269,20 @@ def factorial(number):
 def compute_binomial_coefficient(upper_index , lower_index):
     """
     Compute "upper_index" choose "lower_index"
+    Assumptions: "upper_index" is really an integer , "lower_index" is really an integer
+    Arguments:
+    (i)  "upper_index" : An integer , number of elements in the set
+    (ii) "lower_index" : An integer , number of elements we want to choose from the set
+    Return value:
+    (i) binomial_coef : An integer , which is equal to "upper_index" choose "lower_index"
+    Known Bugs: None
+    WARNING : This function uses the convention that "upper_index" choose "lower_index" equals to zero if:
+    (i)  upper_index < lower_index or
+    (ii) lower_index < 0
     """
-    pass
+    #Handle the above mention convention
+    if upper_index < lower_index or lower_index < 0 :
+        return 0
+
+    binomial_coef = factorial(upper_index) // (factorial(lower_index) * factorial(upper_index - lower_index))
+    return binomial_coef
