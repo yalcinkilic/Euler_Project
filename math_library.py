@@ -18,6 +18,7 @@ a iterative version?
 half of the number rather than the whole
 (i) Solve the inconsistince of two functions get_first_n_digit and
 get_last_n_digit since one of them returns string other returns integer
+(j) Write the compute_binomial_coefficient function
 """
 
 def greatest_common_divisor(num1 , num2):
@@ -242,3 +243,31 @@ def get_last_n_digit(number , n):
         str_last_digits += str(last_digits)
 
     return str_last_digits
+
+
+def factorial(number):
+    """
+    This function computes "number"!
+    Assumptions: "number" is really an integer
+    Arguments:
+    (i)  "number" : An integer , which we want to compute "number"!
+    Return value:
+    (i) number_factorial : An integer , which is equal to "number"!
+    Known Bugs: None
+    """
+    #Handle the special case
+    if number == 0 :
+        return 1
+
+    #If "number" >= 1 , then compute "number" * ("number" -1) * ... * 1
+    number_factorial = 1
+    for i in range(2 , number + 1):
+        number_factorial *= i
+
+    return number_factorial
+
+def compute_binomial_coefficient(upper_index , lower_index):
+    """
+    Compute "upper_index" choose "lower_index"
+    """
+    pass
