@@ -19,21 +19,25 @@ N * 2 , if it is not divisible by 2 , then we have at most N(1/3 + 1/5 + ... + 1
 less than 5*N by the above logic
 """
 
-start_time = time.time()
-#Let's naively check the amicable pairs using get_divisors
-total = 0
-for num1 in range(1 , 1000):
-    for num2 in range(num1 + 1 , 1000):
-        #For the explanation of the if statement check above docstring
-        if num2 < (10 * num1) and not(num2 % 2 == 0 and num2 > (num1 * 2)) and not(num2 % 2 != 0 and num2 > (num1 * 5)):
-            divisor1_list = math_library.get_divisors(num1)
-            divisor2_list = math_library.get_divisors(num2)
-            sum_divisor1 = sum(divisor1_list) - num1
-            sum_divisor2 = sum(divisor2_list) - num2
-            if sum_divisor1 == num2 and sum_divisor2 == num1:
-                print(num1 , num2)
-                total += (num1 + num2)
+"""
+We are computing divisor list of the same integer over and over again. Lets pre_compute them
+and use the list .
+"""
 
+start_time = time.time()
+#Compute divisor_list of all numbers from 1 to 10000 first
+list_of_sum_divisors = [0]
+for number in range(1 , 10000) :
+    divisor_list = math_library.get_divisors(number)
+    list_of_sum_divisors.append(sum(divisor_list) - number)
+
+
+total = 0
+for num1 in range(1 , 10000):
+    #Num2 is our amicable pair candidate for num1
+    num2 = list_of_sum_divisors[num1]
+    if num2 < 10000 and  num1 != num2 and list_of_sum_divisors[num2] == num1 :
+        total += (num1 + num2)
 stop_time = time.time()
-print("Sum of all amicable numbers under 1000 is:" , total)
+print("Sum of all amicable numbers less than 10000 is" , total//2)
 print(stop_time - start_time , "seconds..")
