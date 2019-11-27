@@ -13,15 +13,17 @@ start_time = time.time()
 #Let's naively check the amicable pairs using get_divisors
 total = 0
 for num1 in range(1 , 1000):
-    for num2 in range(num1 , 1000):
-        divisor1_list = math_library.get_divisors(num1)
-        divisor2_list = math_library.get_divisors(num2)
-        sum_divisor1 = sum(divisor1_list) - num1
-        sum_divisor2 = sum(divisor2_list) - num2
-        if sum_divisor1 == num2 and sum_divisor2 == num1 and num1 != num2:
-            print(num1 , num2)
-            total += (num1 + num2)
-
+    for num2 in range(num1 + 1 , 1000):
+        #Try to get rid of the obvious non-amicable tries
+        if  (num2 <= num1 * 2 or num2 % 2 != 0 ) and  num2 <= (num1 * num1 / 8) :
+            divisor1_list = math_library.get_divisors(num1)
+            divisor2_list = math_library.get_divisors(num2)
+            sum_divisor1 = sum(divisor1_list) - num1
+            sum_divisor2 = sum(divisor2_list) - num2
+            if sum_divisor1 == num2 and sum_divisor2 == num1:
+                print(num1 , num2)
+                total += (num1 + num2)
+                
 stop_time = time.time()
-print("Sum of all amicable numbers under 1000 is:" , total * 2)
+print("Sum of all amicable numbers under 10000 is:" , total * 2)
 print(stop_time - start_time , "seconds..")
