@@ -12,13 +12,11 @@ a iterative version?
 (b) should we add timer to all functions?
 (c) should we do some testing for all functions?
 (d) should we convert factorize_integer to a iterative function?
-(e) add docstring for last 5 functions
 (f) check performance of the functions
 (g) change the palindrome function to fasten it a bit via only checking the
 half of the number rather than the whole
 (i) Solve the inconsistince of two functions get_first_n_digit and
 get_last_n_digit since one of them returns string other returns integer
-(j) Write the compute_binomial_coefficient function
 """
 
 def greatest_common_divisor(num1 , num2):
@@ -306,3 +304,27 @@ def sum_of_digits(number):
         total += int(char)
 
     return total
+
+def is_amicable(number1 , number2):
+    """
+    Checks whether number1 and number2 are amicable pairs or not
+    Assumptions: "number1" and "number2" are really integers
+    Arguments:
+    (i)  "number1" : An integer , first number for the possible amicable pair
+    (ii) "number2" : An integer , second number for the possible amicable pair#
+    Return value:
+    (i) boolean : True  -> indicating that "number1" and "number2" form an amicable pair
+                  False -> indicating that "number1" and "number2" is not an amicable pair
+    Known Bugs: None
+    """
+    #The below code basically compares sum of divisors of number1 except itself equals
+    #to number2 and sum of divisors of number2 equals to number1 or not.
+    if number1 != number2 :
+        divisor_list1 = get_divisors(number1)
+        divisor_list2 = get_divisors(number2)
+        sum_divisor_list1 = sum(divisor_list1) - number1
+        sum_divisor_list2 = sum(divisor_list2) - number2
+        if sum_divisor_list1 == number2 and sum_divisor_list2 == number1:
+            return True
+        else:
+            return False
