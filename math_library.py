@@ -328,3 +328,55 @@ def is_amicable(number1 , number2):
             return True
         else:
             return False
+
+def triangular_numbers_list(number):
+    """
+    Create a list of triangular numbers
+    Assumptions: "number" is really an integer
+    Arguments:
+    (i)  "number" : An integer , shows amount of triangular number to be constructed
+
+    Return value:
+    (i) triangular_list : A list , which contains triangular numbers whose length is "number"
+    Known Bugs: None
+    """
+    triangular_list = []
+    for i in range(number):
+        triangular_list.append(i * (i + 1) // 2)
+
+    return triangular_list
+
+
+def pentagonal_numbers_list(number):
+    """
+    Create a list of pentagonal numbers
+    Assumptions: "number" is really an integer
+    Arguments:
+    (i)  "number" : An integer , shows amount of pentagonal number to be constructed
+
+    Return value:
+    (i) pentagonal_list : A list , which contains pentagonal numbers whose length is "number"
+    Known Bugs: None
+    """
+    pentagonal_list = []
+    for i in range(number):
+        pentagonal_list.append(i * (3 * i - 1) // 2)
+
+    return pentagonal_list
+
+def hexagonal_numbers_list(number):
+    """
+    Create a list of hexagonal numbers
+    Assumptions: "number" is really an integer
+    Arguments:
+    (i)  "number" : An integer , shows amount of hexagonal number to be constructed
+
+    Return value:
+    (i) hexagonal_list : A list , which contains hexagonal numbers whose length is "number"
+    Known Bugs: None
+    """
+    hexagonal_list = []
+    for i in range(number):
+        hexagonal_list.append(i * (2 * i - 1))
+
+    return hexagonal_list
