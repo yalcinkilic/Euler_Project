@@ -7,7 +7,7 @@ start = time.time()
 
 rNList = [-1]
 parts = [1]
-alphaList = [1]
+alphaDict = {}
 
 def findAlpha(n):
 	if n == 0:
@@ -25,14 +25,11 @@ def findAlpha(n):
 
 def partitions(n):
 	count = 0
-	for i in range(1, n+1):
-		if i+1 > len(alphaList):
-			alpha = findAlpha(i)
-			alphaList.append(alpha)
-		if alphaList[i] == 1:
-			count -= parts[n-i]
-		elif alphaList[i] == -1:
-			count += parts[n-i]
+	alpha = findAlpha(n)
+	if alpha != 0:
+		alphaDict[n] = alpha
+	for k, v in alphaDict.items():
+		count -= alphaDict[k] * parts[n-k]
 	parts.append(count)
 	return count
 
