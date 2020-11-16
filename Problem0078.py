@@ -38,7 +38,7 @@ def partitions(n):
 n = 1
 while True:
 	result = partitions(n)
-	if result % 100000 == 0:
+	if result % 1000000 == 0:
 		end = time.time()
 		print("\n========================================================")
 		print("n =", n , "finished in", end - start, "secs")
