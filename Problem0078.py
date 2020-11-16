@@ -3,6 +3,8 @@ import math
 
 #http://www.numbertheory.org/php/partition.html
 
+start = time.time()
+
 rNList = [-1]
 parts = [1]
 alphaList = [1]
@@ -35,15 +37,15 @@ def partitions(n):
 
 n = 1
 while True:
-	start = time.time()
 	result = partitions(n)
 	if result % 100000 == 0:
-		print(n, "=", result)
 		end = time.time()
-		print(start-end, "secs")
+		print("\n========================================================")
+		print("n =", n , "finished in", end - start, "secs")
+		print("========================================================")
 		break
 	if n % 1000 == 0:
-		print(n, "=", result)
+		print("n =", n, "is finished")
 	n += 1
 
 
