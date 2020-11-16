@@ -28,7 +28,7 @@ def partitions(n):
 	alpha = findAlpha(n)
 	if alpha != 0:
 		alphaDict[n] = alpha
-	for k, v in alphaDict.items():
+	for k in alphaDict:
 		count -= alphaDict[k] * parts[n-k]
 	parts.append(count)
 	return count
