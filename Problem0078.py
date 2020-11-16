@@ -15,9 +15,10 @@ def findAlpha(n):
 	nSqr = math.sqrt(n)
 	for r in range(1, int(nSqr)+1):
 		if r+1 > len(rNList):
-			if 3*math.pow(r, 2) - r > 2 * n:
+			resultPart = 3*math.pow(r, 2)
+			if resultPart - r > 2 * n:
 				break
-			rNList.append([3*math.pow(r, 2) + r, 3*math.pow(r, 2) - r])
+			rNList.append([resultPart + r, resultPart - r])
 		if (rNList[r][0] == 2 * n) or (rNList[r][1] == 2 * n):
 			return int(math.pow(-1, r))
 	return 0
