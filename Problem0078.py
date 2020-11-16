@@ -37,13 +37,15 @@ n = 1
 while True:
 	start = time.time()
 	result = partitions(n)
-	if result % 1000000 == 0:
+	if result % 100000 == 0:
 		print(n, "=", result)
 		end = time.time()
+		print(start-end, "secs")
 		break
 	if n % 1000 == 0:
 		print(n, "=", result)
 	n += 1
+
 
 
 
